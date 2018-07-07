@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.arquitectura.aula.model;
 
+import ec.edu.espe.arquitectura.nosql.mongo.BaseEntity;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
@@ -18,7 +19,7 @@ import org.mongodb.morphia.annotations.Reference;
  * @author js_cm
  */
 @Entity(noClassnameStored = true, value = "foroAlumno")
-public class ForoAlumno {
+public class ForoAlumno extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "foroAlumno_codigoUIdx", unique = true))
     private Integer codigo;

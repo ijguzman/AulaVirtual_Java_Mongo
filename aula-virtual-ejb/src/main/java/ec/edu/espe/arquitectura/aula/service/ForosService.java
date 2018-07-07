@@ -5,9 +5,9 @@
  */
 package ec.edu.espe.arquitectura.aula.service;
 
-import es.edu.espe.arquitectura.aula.dao.AnuncioDAO;
+import es.edu.espe.arquitectura.aula.dao.ForoDAO;
 import ec.edu.espe.arquitectura.nosql.mongo.MongoPersistence;
-import ec.edu.espe.arquitectura.aula.model.Anuncio;
+import ec.edu.espe.arquitectura.aula.model.Foro;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,50 +21,52 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @LocalBean
-public class AnuncioService {
+public class ForosService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
     @EJB
     private MongoPersistence mp;
-    private AnuncioDAO anuncioDao;
+    private ForoDAO foroDao;
     
     @PostConstruct
     public void init() {
-        this.anuncioDao = new AnuncioDAO(Anuncio.class, mp.context());
+        this.foroDao = new ForoDAO(Foro.class, mp.context());
     }
 
-    public List<Anuncio> obtenerTodos() {
-        return this.anuncioDao.find().asList();
+    public List<Foro> obtenerTodos() {
+        return this.foroDao.find().asList();
+    }
+    public List<Foro> obtenerForoCurso(String curso) {
+        return this.foroDao.findbyCurso(curso);
     }
     
-    
-    public void crear(Anuncio anuncio) {
-        List<Anuncio> aux = this.anuncioDao.find().asList();
+    public void crear(Foro foro) {
+        List<Foro> aux = this.foroDao.find().asList();
         Integer codigo;
         if (aux.isEmpty()) {
             codigo = 1;
         } else {
             Integer count = aux.size();
-            Anuncio last = aux.get(count - 1);
+            Foro last = aux.get(count - 1);
             codigo = last.getCodigo() + 1;
         }
-        anuncio.setCodigo(codigo);
-        this.anuncioDao.save(anuncio);
+        foro.setCodigo(codigo);
+        this.foroDao.save(foro);
     }
-    public void crear1(Anuncio anuncio) {
-        this.anuncioDao.save(anuncio);
+    public void crear1(Foro foro) {
+        this.foroDao.save(foro);
     }
 
-    public void modificar(Anuncio anuncio) {
-        Anuncio aux = this.anuncioDao.findOne("codigo", anuncio.getCodigo());
-        anuncio.setId(aux.getId());
-        this.anuncioDao.save(anuncio);
+    public void modificar(Foro foro) {
+        Foro aux = this.foroDao.findOne("codigo", foro.getCodigo());
+        foro.setId(aux.getId());
+        this.foroDao.save(foro);
     }
     
     public void eliminar(Integer codigo) {
-        Anuncio anuncio = this.anuncioDao.findOne("codigo", codigo);
-        this.anuncioDao.delete(anuncio);
+        Foro foro = this.foroDao.findOne("codigo", codigo);
+        this.foroDao.delete(foro);
     }
 }

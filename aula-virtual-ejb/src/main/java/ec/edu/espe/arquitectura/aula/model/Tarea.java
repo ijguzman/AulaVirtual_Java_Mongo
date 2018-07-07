@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.arquitectura.aula.model;
 
+import ec.edu.espe.arquitectura.nosql.mongo.BaseEntity;
 import java.util.Date;
 import java.util.Objects;
 import org.mongodb.morphia.annotations.Entity;
@@ -16,7 +17,7 @@ import org.mongodb.morphia.annotations.Indexed;
  * @author js_cm
  */
 @Entity(noClassnameStored = true, value = "tarea")
-public class Tarea {
+public class Tarea extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "tarea_codigoUIdx", unique = true))
     private Integer codigo;

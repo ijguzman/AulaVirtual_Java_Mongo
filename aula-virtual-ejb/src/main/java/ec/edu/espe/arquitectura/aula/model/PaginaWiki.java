@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.arquitectura.aula.model;
 
+import ec.edu.espe.arquitectura.nosql.mongo.BaseEntity;
 import java.util.Date;
 import java.util.Objects;
 import org.mongodb.morphia.annotations.Entity;
@@ -17,7 +18,7 @@ import org.mongodb.morphia.annotations.Reference;
  * @author js_cm
  */
 @Entity(noClassnameStored = true, value = "paginaWiki")
-public class PaginaWiki {
+public class PaginaWiki extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "paginaWiki_codigoUIdx", unique = true))
     private Integer codigo;

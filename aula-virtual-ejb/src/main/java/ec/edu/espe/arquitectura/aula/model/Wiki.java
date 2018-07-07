@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.arquitectura.aula.model;
 
+import ec.edu.espe.arquitectura.nosql.mongo.BaseEntity;
 import java.util.Date;
 import java.util.Objects;
 import org.mongodb.morphia.annotations.Entity;
@@ -16,7 +17,7 @@ import org.mongodb.morphia.annotations.Indexed;
  * @author js_cm
  */
 @Entity(noClassnameStored = true, value = "wiki")
-public class Wiki {
+public class Wiki extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "wiki_codigoUIdx", unique = true))
     private String codigo;
