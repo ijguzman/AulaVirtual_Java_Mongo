@@ -23,8 +23,7 @@ public class EntregaTarea extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "entregaTarea_codigoUIdx", unique = true))
     private Integer codigo;
-    @Reference
-    private Tarea tarea;
+    private Integer tarea;
     private String alumno;
     private String curso;
     private String texto;
@@ -49,11 +48,11 @@ public class EntregaTarea extends BaseEntity{
         this.curso = curso;
     }
 
-    public Tarea getTarea() {
+    public Integer getTarea() {
         return tarea;
     }
 
-    public void setTarea(Tarea tarea) {
+    public void setTarea(Integer tarea) {
         this.tarea = tarea;
     }
 
@@ -104,7 +103,6 @@ public class EntregaTarea extends BaseEntity{
     public void setObservacion(String observacion) {
         this.observacion = observacion;
     }
-
     
     @Override
     public int hashCode() {
