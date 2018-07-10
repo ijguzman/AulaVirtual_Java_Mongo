@@ -55,19 +55,17 @@ public class EntregaTareaResource {
         throw new UnsupportedOperationException();
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response postJson(EntregaTarea request) {
-        Tarea tareaAEntregar = this.tareaService.obtenerTarea(request.getTarea().getCodigo());
-        request.setTarea(tareaAEntregar);
-        this.entregaTareaService.crear(request);
-        return Response.ok(request)
-                .header("Access-Control-Allow-Methods", "POST").build();
-    }
-    
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response putJson(EntregaTarea request) {
+        this.entregaTareaService.crear(request);
+        return Response.ok(request)
+                .header("Access-Control-Allow-Methods", "PUT").build();
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void postJson(String content) {
     }
 }

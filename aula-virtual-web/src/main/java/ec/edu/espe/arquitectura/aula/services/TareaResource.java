@@ -54,19 +54,19 @@ public class TareaResource {
         return Response.ok(gn).build();
     }
 
-    @POST
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postJson(Tarea request) {
+    public Response putJson(Tarea request) {
         this.service.crear(request);
         return Response.ok(request)
                 .header("Access-Control-Allow-Methods", "POST").build();
     }
 
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putJson(Tarea request) {
+    public Response postJson(Tarea request) {
         this.service.modificar(request);
         return Response.ok(request)
                 .header("Access-Control-Allow-Methods", "PUT").build();
