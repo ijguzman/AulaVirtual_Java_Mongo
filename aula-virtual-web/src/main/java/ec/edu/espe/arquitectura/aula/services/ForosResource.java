@@ -5,9 +5,10 @@
  */
 package ec.edu.espe.arquitectura.aula.services;
 
-import ec.edu.espe.arquitectura.aula.RestMessage.ForoRQ;
+
 import ec.edu.espe.arquitectura.aula.model.Anuncio;
 import ec.edu.espe.arquitectura.aula.model.Foro;
+import ec.edu.espe.arquitectura.aula.model.Tarea;
 import ec.edu.espe.arquitectura.aula.service.AnuncioService;
 import ec.edu.espe.arquitectura.aula.service.ForosService;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.GenericEntity;
@@ -58,16 +60,26 @@ public class ForosResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postJson(ForoRQ request) {
-        Foro foro=new Foro();
-        foro.setCurso(request.getCurso());
-        foro.setDescripcion(request.getDescripcion());
-        foro.setFechaFin(request.getFechaFin());
-        foro.setFechaInicio(request.getFechaInicio());
-        foro.setTema(request.getTema());
-        System.out.println(foro.getDescripcion());
-        //.info("Creando conexion");
-        this.service.crear(foro);
-        return Response.ok(foro).build();
+    public Response postJson(Foro request) {
+        this.service.modificar(request);
+        return Response.ok(request)
+                .header("Access-Control-Allow-Methods", "POST").build();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response putJson(Foro request) {
+        this.service.crear(request);
+        System.out.println(request.getFechaInicio());
+        return Response.ok(request)
+                .header("Access-Control-Allow-Methods", "PUT").build();
+    }
+    
+    @DELETE
+    @Path(value = "{foro}")
+    public Response deleteJson(@PathParam(value = "foro") Integer foro) {
+        this.service.eliminar(foro);
+        return Response.ok().build();
     }
 }

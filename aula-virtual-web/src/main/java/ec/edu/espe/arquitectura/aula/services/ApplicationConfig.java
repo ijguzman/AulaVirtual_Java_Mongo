@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(ec.edu.espe.arquitectura.aula.services.AnunciosResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.CursosDocenteResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.EntregaTareaResource.class);
+        resources.add(ec.edu.espe.arquitectura.aula.services.ForoAlumnoResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.ForosResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.TareaResource.class);
     }
