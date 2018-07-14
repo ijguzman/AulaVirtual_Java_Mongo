@@ -39,7 +39,9 @@ public class AnuncioService {
         return this.anuncioDao.find().asList();
     }
     
-    
+    public List<Anuncio> obtenerAnuncioCurso(String curso) {
+        return this.anuncioDao.findbyCurso(curso);
+    }
     public void crear(Anuncio anuncio) {
         List<Anuncio> aux = this.anuncioDao.find().asList();
         Integer codigo;

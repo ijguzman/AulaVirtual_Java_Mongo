@@ -6,9 +6,11 @@
 package es.edu.espe.arquitectura.aula.dao;
 
 import ec.edu.espe.arquitectura.aula.model.ForoAlumno;
+import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
+import org.mongodb.morphia.query.Query;
 
 /**
  *
@@ -17,5 +19,10 @@ import org.mongodb.morphia.dao.BasicDAO;
 public class ForoAlumnoDAO  extends BasicDAO<ForoAlumno, ObjectId>  {
     public ForoAlumnoDAO(Class<ForoAlumno> objectEntity, Datastore ds) {
         super(objectEntity, ds);
+    }
+    public List<ForoAlumno> findbyCurso (String curso){
+        Query<ForoAlumno> q = getDatastore().createQuery(ForoAlumno.class);
+        q.criteria("curso").equal(curso);
+        return q.asList();
     }
 }

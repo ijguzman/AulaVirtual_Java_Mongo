@@ -5,8 +5,10 @@
  */
 package ec.edu.espe.arquitectura.aula.services;
 
-import ec.edu.espe.arquitectura.aula.model.Anuncio;
-import ec.edu.espe.arquitectura.aula.service.AnuncioService;
+import ec.edu.espe.arquitectura.aula.model.Foro;
+import ec.edu.espe.arquitectura.aula.model.ForoAlumno;
+import ec.edu.espe.arquitectura.aula.service.ForoAlumnoService;
+
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -29,76 +31,56 @@ import javax.ws.rs.core.Response;
  *
  * @author CORE I7
  */
-@Path("Anuncios")
+@Path("ForoAlumno")
 @RequestScoped
-public class AnunciosResource {
+public class ForoAlumnoResource {
 
     @Context
     private UriInfo context;
     @Inject
-    private AnuncioService service;
+    private ForoAlumnoService service;
     /**
-     * Creates a new instance of AnunciosResource
+     * Creates a new instance of ForoAlumnoResource
      */
-    public AnunciosResource() {
+    public ForoAlumnoResource() {
     }
 
     /**
-     * Retrieves representation of an instance of ec.edu.espe.arquitectura.aula.services.AnunciosResource
+     * Retrieves representation of an instance of ec.edu.espe.arquitectura.aula.services.ForoAlumnoResource
      * @return an instance of java.lang.String
      */
-    /*@GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
-    *
-     * PUT method for updating or creating an instance of AnunciosResource
-     * @param content representation for the resource
-     
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }*/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path (value="{curso}")
     public Response getJson(@PathParam(value="curso")String curso) {
-            List<Anuncio> lista_anuncios=this.service.obtenerAnuncioCurso(curso);
-            GenericEntity<List<Anuncio>> gn=new GenericEntity<List<Anuncio>>(lista_anuncios){};
+            List<ForoAlumno> lista_foros=this.service.obtenerForoAlumnoCurso(curso);
+            GenericEntity<List<ForoAlumno>> gn=new GenericEntity<List<ForoAlumno>>(lista_foros){};
             return Response.ok(gn).build();
     }
     
-    @PUT
+    
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putJson(Anuncio request) {
-        this.service.crear(request);
+    public Response postJson(ForoAlumno request) {
+        this.service.modificar(request);
         return Response.ok(request)
                 .header("Access-Control-Allow-Methods", "POST").build();
     }
 
-    @POST
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postJson(Anuncio request) {
-        this.service.modificar(request);
+    public Response putJson(ForoAlumno request) {
+        this.service.crear(request);
         return Response.ok(request)
                 .header("Access-Control-Allow-Methods", "PUT").build();
     }
     
-//    @DELETE
-//    @Path(value = "{anuncio}")
-//    public Response deleteJson(@PathParam(value = "anuncio") Integer anuncio) {
-//        this.service.eliminar(anuncio);
-//        return Response.ok().build();
-//    }
     @DELETE
-    @Path(value = "{anuncio}")
-    public Response deleteJson(@PathParam(value = "anuncio") Integer anuncio) {
-        this.service.eliminar(anuncio);
+    @Path(value = "{foro_alumno}")
+    public Response deleteJson(@PathParam(value = "foro_alumno") Integer foro_alumno) {
+        this.service.eliminar(foro_alumno);
         return Response.ok().build();
     }
 }
