@@ -11,7 +11,6 @@ import java.util.Objects;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.IndexOptions;
 import org.mongodb.morphia.annotations.Indexed;
-import org.mongodb.morphia.annotations.Reference;
 
 /**
  *
@@ -22,10 +21,8 @@ public class CambioWiki extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "cambioWiki_codigoUIdx", unique = true))
     private Integer codigo;
-    @Reference
-    private PaginaWiki foro;
-    @Reference 
-    private Wiki wiki;
+    private Integer foro; 
+    private String wiki;
     private String alumno;
     private String curso;
     private String descripcion;
@@ -55,19 +52,19 @@ public class CambioWiki extends BaseEntity{
         this.alumno = alumno;
     }
 
-    public PaginaWiki getForo() {
+    public Integer getForo() {
         return foro;
     }
 
-    public void setForo(PaginaWiki foro) {
+    public void setForo(Integer foro) {
         this.foro = foro;
     }
 
-    public Wiki getWiki() {
+    public String getWiki() {
         return wiki;
     }
 
-    public void setWiki(Wiki wiki) {
+    public void setWiki(String wiki) {
         this.wiki = wiki;
     }
 

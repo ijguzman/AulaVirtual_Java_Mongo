@@ -33,4 +33,11 @@ public class EntregaTareaDAO  extends BasicDAO<EntregaTarea, ObjectId>  {
         q.criteria("Tarea").equal(tarea);
         return q.asList();
     }
+    
+    public List<EntregaTarea> findbyCursoTarea (String curso, Integer tarea){
+        Query<EntregaTarea> q = getDatastore().createQuery(EntregaTarea.class);
+        q.criteria("curso").equal(curso);
+        q.criteria("tarea").equal(tarea);
+        return q.asList();
+    }
 }

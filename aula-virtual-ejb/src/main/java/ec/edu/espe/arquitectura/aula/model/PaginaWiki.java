@@ -6,12 +6,10 @@
 package ec.edu.espe.arquitectura.aula.model;
 
 import ec.edu.espe.arquitectura.nosql.mongo.BaseEntity;
-import java.util.Date;
 import java.util.Objects;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.IndexOptions;
 import org.mongodb.morphia.annotations.Indexed;
-import org.mongodb.morphia.annotations.Reference;
 
 /**
  *
@@ -22,8 +20,7 @@ public class PaginaWiki extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "paginaWiki_codigoUIdx", unique = true))
     private Integer codigo;
-    @Reference
-    private Wiki wiki;
+    private String wiki;
     private String titulo;
     private String hipervinculo;
     private String texto;
@@ -44,12 +41,12 @@ public class PaginaWiki extends BaseEntity{
     public void setTexto(String texto) {
         this.texto = texto;
     }
-    
-    public Wiki getWiki() {
+
+    public String getWiki() {
         return wiki;
     }
 
-    public void setWiki(Wiki wiki) {
+    public void setWiki(String wiki) {
         this.wiki = wiki;
     }
 

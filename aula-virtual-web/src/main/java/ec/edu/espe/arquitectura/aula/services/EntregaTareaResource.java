@@ -9,6 +9,7 @@ import ec.edu.espe.arquitectura.aula.model.EntregaTarea;
 import ec.edu.espe.arquitectura.aula.model.Tarea;
 import ec.edu.espe.arquitectura.aula.service.EntregaTareaService;
 import ec.edu.espe.arquitectura.aula.service.TareaService;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -18,7 +19,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -38,21 +42,18 @@ public class EntregaTareaResource {
     @Inject
     private TareaService tareaService;
 
-    /**
-     * Creates a new instance of EntregaTareaResource
-     */
     public EntregaTareaResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of ec.edu.espe.arquitectura.aula.services.EntregaTareaResource
-     * @return an instance of java.lang.String
-     */
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    @Path(value = "/{curso}/{tarea}")
+    public Response getJson(@PathParam(value = "curso") String curso, @PathParam(value = "tarea") Integer tarea) {
+        List<EntregaTarea> listaEntregaTareas = this.entregaTareaService.obtenerPorCursoTarea(curso,tarea);
+        GenericEntity<List<EntregaTarea>> gn = new GenericEntity<List<EntregaTarea>>(listaEntregaTareas) {
+        };
+        return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
 
     @PUT
@@ -63,9 +64,20 @@ public class EntregaTareaResource {
         return Response.ok(request)
                 .header("Access-Control-Allow-Methods", "PUT").build();
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postJson(String content) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response postJson(EntregaTarea request) {
+        this.entregaTareaService.modificar(request);
+        return Response.ok(request)
+                .header("Access-Control-Allow-Methods", "POST").build();
+    }
+    
+    @DELETE
+    @Path(value = "{EntregaTarea}")
+    public Response deleteJson(@PathParam(value = "EntregaTarea") Integer EntregaTarea) {
+        this.entregaTareaService.eliminar(EntregaTarea);
+        return Response.ok().build();
     }
 }

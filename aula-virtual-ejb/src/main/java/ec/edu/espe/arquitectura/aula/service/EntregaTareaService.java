@@ -34,6 +34,10 @@ public class EntregaTareaService {
         return this.EntregaTareaDao.find().asList();
     }
     
+    public List<EntregaTarea> obtenerPorCursoTarea(String curso, Integer tarea){
+        return this.EntregaTareaDao.findbyCursoTarea(curso, tarea);
+    }
+    
     public void crear(EntregaTarea EntregaTarea) {
         List<EntregaTarea> aux = this.EntregaTareaDao.find().asList();
         Integer codigo;

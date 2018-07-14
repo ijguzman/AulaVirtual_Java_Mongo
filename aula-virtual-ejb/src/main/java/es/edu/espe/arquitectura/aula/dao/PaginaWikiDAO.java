@@ -6,9 +6,11 @@
 package es.edu.espe.arquitectura.aula.dao;
 
 import ec.edu.espe.arquitectura.aula.model.PaginaWiki;
+import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
+import org.mongodb.morphia.query.Query;
 
 /**
  *
@@ -17,5 +19,11 @@ import org.mongodb.morphia.dao.BasicDAO;
 public class PaginaWikiDAO  extends BasicDAO<PaginaWiki, ObjectId>  {
     public PaginaWikiDAO(Class<PaginaWiki> objectEntity, Datastore ds) {
         super(objectEntity, ds);
+    }
+    
+    public List<PaginaWiki> findbyWiki (String wiki){
+        Query<PaginaWiki> q = getDatastore().createQuery(PaginaWiki.class);
+        q.criteria("wiki").equal(wiki);
+        return q.asList();
     }
 }
