@@ -21,10 +21,11 @@ import javax.ejb.Stateless;
 @Stateless
 @LocalBean
 public class EntregaTareaService {
+
     @EJB
     private MongoPersistence mp;
     private EntregaTareaDAO EntregaTareaDao;
-    
+
     @PostConstruct
     public void init() {
         this.EntregaTareaDao = new EntregaTareaDAO(EntregaTarea.class, mp.context());
@@ -33,11 +34,11 @@ public class EntregaTareaService {
     public List<EntregaTarea> obtenerTodos() {
         return this.EntregaTareaDao.find().asList();
     }
-    
-    public List<EntregaTarea> obtenerPorCursoTarea(String curso, Integer tarea){
+
+    public List<EntregaTarea> obtenerPorCursoTarea(String curso, Integer tarea) {
         return this.EntregaTareaDao.findbyCursoTarea(curso, tarea);
     }
-    
+
     public void crear(EntregaTarea EntregaTarea) {
         List<EntregaTarea> aux = this.EntregaTareaDao.find().asList();
         Integer codigo;
@@ -51,9 +52,16 @@ public class EntregaTareaService {
         EntregaTarea.setCodigo(codigo);
         this.EntregaTareaDao.save(EntregaTarea);
     }
-    
+
     public void crear1(EntregaTarea EntregaTarea) {
         this.EntregaTareaDao.save(EntregaTarea);
+    }
+
+    public EntregaTarea modificarCalificacion(EntregaTarea EntregaTareaCalificacion) {
+        EntregaTarea aux = this.EntregaTareaDao.findOne("codigo", EntregaTareaCalificacion.getCodigo());
+        aux.setCalificacion(EntregaTareaCalificacion.getCalificacion());
+        this.EntregaTareaDao.save(aux);
+        return aux;
     }
 
     public void modificar(EntregaTarea EntregaTarea) {
@@ -61,7 +69,7 @@ public class EntregaTareaService {
         EntregaTarea.setId(aux.getId());
         this.EntregaTareaDao.save(EntregaTarea);
     }
-    
+
     public void eliminar(Integer codigo) {
         EntregaTarea EntregaTarea = this.EntregaTareaDao.findOne("codigo", codigo);
         this.EntregaTareaDao.delete(EntregaTarea);

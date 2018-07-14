@@ -48,7 +48,7 @@ public class PaginaWikiResource {
         List<PaginaWiki> lista_paginaWikis = this.service.obtenerPorWiki(wiki);
         GenericEntity<List<PaginaWiki>> gn = new GenericEntity<List<PaginaWiki>>(lista_paginaWikis) {
         };
-        return Response.ok(gn).build();
+        return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
 
     @PUT
@@ -73,6 +73,6 @@ public class PaginaWikiResource {
     @Path(value = "{paginaWiki}")
     public Response deleteJson(@PathParam(value = "paginaWiki") Integer paginaWiki) {
         this.service.eliminar(paginaWiki);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }

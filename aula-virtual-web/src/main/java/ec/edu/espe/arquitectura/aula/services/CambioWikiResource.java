@@ -47,7 +47,7 @@ public class CambioWikiResource {
         List<CambioWiki> lista_cambioWikis = this.service.obtenerPorWiki(wiki);
         GenericEntity<List<CambioWiki>> gn = new GenericEntity<List<CambioWiki>>(lista_cambioWikis) {
         };
-        return Response.ok(gn).build();
+        return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
 
     @PUT
@@ -72,6 +72,6 @@ public class CambioWikiResource {
     @Path(value = "{cambioWiki}")
     public Response deleteJson(@PathParam(value = "cambioWiki") String cambioWiki) {
         this.service.eliminar(cambioWiki);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }

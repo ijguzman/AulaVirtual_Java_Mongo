@@ -49,7 +49,7 @@ public class WikiResource {
         List<Wiki> lista_wikis = this.service.obtenerWikiPorCurso(curso);
         GenericEntity<List<Wiki>> gn = new GenericEntity<List<Wiki>>(lista_wikis) {
         };
-        return Response.ok(gn).build();
+        return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
 
     @PUT
@@ -74,6 +74,6 @@ public class WikiResource {
     @Path(value = "{wiki}")
     public Response deleteJson(@PathParam(value = "wiki") String wiki) {
         this.service.eliminar(wiki);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }
