@@ -53,7 +53,7 @@ public class ForosResource {
     public Response getJson(@PathParam(value="curso")String curso) {
             List<Foro> lista_foros=this.service.obtenerForoCurso(curso);
             GenericEntity<List<Foro>> gn=new GenericEntity<List<Foro>>(lista_foros){};
-            return Response.ok(gn).build();
+            return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
     
     
@@ -80,6 +80,6 @@ public class ForosResource {
     @Path(value = "{foro}")
     public Response deleteJson(@PathParam(value = "foro") Integer foro) {
         this.service.eliminar(foro);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }

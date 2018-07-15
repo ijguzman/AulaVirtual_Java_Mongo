@@ -51,7 +51,7 @@ public class TareaResource {
         List<Tarea> lista_tareas = this.service.obtenerTareaCurso(curso);
         GenericEntity<List<Tarea>> gn = new GenericEntity<List<Tarea>>(lista_tareas) {
         };
-        return Response.ok(gn).build();
+        return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
 
     @PUT
@@ -76,6 +76,6 @@ public class TareaResource {
     @Path(value = "{tarea}")
     public Response deleteJson(@PathParam(value = "tarea") Integer tarea) {
         this.service.eliminar(tarea);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }

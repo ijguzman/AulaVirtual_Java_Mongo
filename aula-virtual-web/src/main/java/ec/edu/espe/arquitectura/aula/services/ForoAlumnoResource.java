@@ -55,7 +55,7 @@ public class ForoAlumnoResource {
     public Response getJson(@PathParam(value="curso")String curso) {
             List<ForoAlumno> lista_foros=this.service.obtenerForoAlumnoCurso(curso);
             GenericEntity<List<ForoAlumno>> gn=new GenericEntity<List<ForoAlumno>>(lista_foros){};
-            return Response.ok(gn).build();
+            return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
     
     
@@ -81,6 +81,6 @@ public class ForoAlumnoResource {
     @Path(value = "{foro_alumno}")
     public Response deleteJson(@PathParam(value = "foro_alumno") Integer foro_alumno) {
         this.service.eliminar(foro_alumno);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }
