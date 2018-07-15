@@ -68,7 +68,7 @@ public class AnunciosResource {
     public Response getJson(@PathParam(value="curso")String curso) {
             List<Anuncio> lista_anuncios=this.service.obtenerAnuncioCurso(curso);
             GenericEntity<List<Anuncio>> gn=new GenericEntity<List<Anuncio>>(lista_anuncios){};
-            return Response.ok(gn).build();
+            return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }
     
     @PUT
