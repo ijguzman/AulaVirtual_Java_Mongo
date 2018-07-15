@@ -78,6 +78,6 @@ public class EntregaTareaResource {
     @Path(value = "{EntregaTarea}")
     public Response deleteJson(@PathParam(value = "EntregaTarea") Integer EntregaTarea) {
         this.entregaTareaService.eliminar(EntregaTarea);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }
