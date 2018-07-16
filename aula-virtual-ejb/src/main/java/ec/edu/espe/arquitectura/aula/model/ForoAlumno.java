@@ -23,8 +23,8 @@ public class ForoAlumno extends BaseEntity{
     
     @Indexed(options = @IndexOptions(name = "foroAlumno_codigoUIdx", unique = true))
     private Integer codigo;
-    @Reference
-    private Foro foro;
+    //private Foro foro;
+    private Integer foro;
     private String alumno;
     private String curso;
     private String texto;
@@ -62,11 +62,11 @@ public class ForoAlumno extends BaseEntity{
         this.texto = texto;
     }
 
-    public Foro getForo() {
+    public Integer getForo() {
         return foro;
     }
 
-    public void setForo(Foro foro) {
+    public void setForo(Integer foro) {
         this.foro = foro;
     }
 

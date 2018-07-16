@@ -86,7 +86,7 @@ public class AnunciosResource {
     public Response postJson(Anuncio request) {
         this.service.modificar(request);
         return Response.ok(request)
-                .header("Access-Control-Allow-Methods", "PUT").build();
+                .header("Access-Control-Allow-Methods", "POST").build();
     }
     
 //    @DELETE
@@ -99,6 +99,6 @@ public class AnunciosResource {
     @Path(value = "{anuncio}")
     public Response deleteJson(@PathParam(value = "anuncio") Integer anuncio) {
         this.service.eliminar(anuncio);
-        return Response.ok().header("Access-Control-Allow-Methods", "DELEtE").build();
+        return Response.ok().header("Access-Control-Allow-Methods", "DELETE").build();
     }
 }
