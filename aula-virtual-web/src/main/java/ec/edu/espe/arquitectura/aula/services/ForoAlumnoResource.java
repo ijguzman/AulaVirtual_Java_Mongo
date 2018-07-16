@@ -5,7 +5,6 @@
  */
 package ec.edu.espe.arquitectura.aula.services;
 
-import ec.edu.espe.arquitectura.aula.model.Foro;
 import ec.edu.espe.arquitectura.aula.model.ForoAlumno;
 import ec.edu.espe.arquitectura.aula.service.ForoAlumnoService;
 
@@ -52,8 +51,8 @@ public class ForoAlumnoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path (value="{curso}")
-    public Response getJson(@PathParam(value="curso")String curso) {
-            List<ForoAlumno> lista_foros=this.service.obtenerForoAlumnoCurso(curso);
+    public Response getJson(@PathParam(value="curso")Integer foro) {
+            List<ForoAlumno> lista_foros=this.service.obtenerForoAlumnoCurso(foro);
             GenericEntity<List<ForoAlumno>> gn=new GenericEntity<List<ForoAlumno>>(lista_foros){};
             return Response.ok(gn).header("Access-Control-Allow-Methods", "GET").build();
     }

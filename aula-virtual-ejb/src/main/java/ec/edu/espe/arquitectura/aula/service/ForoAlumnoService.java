@@ -38,8 +38,8 @@ public class ForoAlumnoService {
     public List<ForoAlumno> obtenerTodos() {
         return this.foroAlumnoDao.find().asList();
     }
-    public List<ForoAlumno> obtenerForoAlumnoCurso(String curso) {
-        return this.foroAlumnoDao.findbyCurso(curso);
+    public List<ForoAlumno> obtenerForoAlumnoCurso(Integer foro) {
+        return this.foroAlumnoDao.findbyForo(foro);
     }
     
     public void crear(ForoAlumno foroAlumno) {

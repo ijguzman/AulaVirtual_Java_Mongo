@@ -20,9 +20,9 @@ public class ForoAlumnoDAO  extends BasicDAO<ForoAlumno, ObjectId>  {
     public ForoAlumnoDAO(Class<ForoAlumno> objectEntity, Datastore ds) {
         super(objectEntity, ds);
     }
-    public List<ForoAlumno> findbyCurso (String curso){
+    public List<ForoAlumno> findbyForo (Integer foro){
         Query<ForoAlumno> q = getDatastore().createQuery(ForoAlumno.class);
-        q.criteria("curso").equal(curso);
+        q.criteria("foro").equal(foro);
         return q.asList();
     }
 }
