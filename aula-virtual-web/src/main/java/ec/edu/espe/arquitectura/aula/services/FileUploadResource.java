@@ -48,6 +48,8 @@ public class FileUploadResource {
     /**
      * Returns text response to caller containing current time-stamp
      *
+     * @param uploadedInputStream
+     * @param fileDetail
      * @return error response in case of missing parameters an internal
      * exception or success response if file has been stored successfully
      */
