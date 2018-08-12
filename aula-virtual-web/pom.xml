@@ -37,6 +37,31 @@
             <version>1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-multipart</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.19</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -51,6 +76,13 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/main/resources
+                            </directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>

@@ -21,6 +21,7 @@ public class ApplicationConfig extends Application {
         addRestResourceClasses(resources);
         return resources;
     }
+    
 
     /**
      * Do not modify addRestResourceClasses() method.
@@ -35,6 +36,8 @@ public class ApplicationConfig extends Application {
         resources.add(ec.edu.espe.arquitectura.aula.services.CambioWikiResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.CursosDocenteResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.EntregaTareaResource.class);
+        resources.add(ec.edu.espe.arquitectura.aula.services.FileDownloadResource.class);
+        resources.add(ec.edu.espe.arquitectura.aula.services.FileUploadResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.ForoAlumnoResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.ForosResource.class);
         resources.add(ec.edu.espe.arquitectura.aula.services.PaginaWikiResource.class);
