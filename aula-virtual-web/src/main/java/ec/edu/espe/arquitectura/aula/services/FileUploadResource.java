@@ -20,13 +20,15 @@ import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+//import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+//import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  * REST Web Service
  *
  * @author js_cm
  */
-@Path("/Upload")
+@Path("Upload")
 @RequestScoped
 public class FileUploadResource {
 
@@ -48,8 +50,6 @@ public class FileUploadResource {
     /**
      * Returns text response to caller containing current time-stamp
      *
-     * @param uploadedInputStream
-     * @param fileDetail
      * @return error response in case of missing parameters an internal
      * exception or success response if file has been stored successfully
      */
